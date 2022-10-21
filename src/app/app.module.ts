@@ -7,10 +7,11 @@ import { HeaderComponent } from './shared/header/header.component';
 import { MoviesComponent } from './pages/movies/movies.component';
 import { HomeComponent } from './pages/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent, MoviesComponent, HomeComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })
