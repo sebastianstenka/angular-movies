@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IMAGES_SIZES } from 'src/app/constants/images.sizes';
 import { Movie } from 'src/app/models/movie';
 
 @Component({
@@ -12,4 +13,8 @@ export class ItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getImgPath() {
+    return `${IMAGES_SIZES.medium + this.itemData?.backdrop_path}`;
+  }
 }

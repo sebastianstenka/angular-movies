@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MOVIES_GROUPS } from 'src/app/constants/movies.groups';
 import { Movie } from 'src/app/models/movie';
-import { MovieGroup } from 'src/app/models/moviesGroup';
 import { MoviesService } from '../../services/movies.service';
 
 @Component({
@@ -16,15 +16,15 @@ export class HomeComponent implements OnInit {
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.moviesService.getMovies(MovieGroup.Popular).subscribe((res: any) => {
+    this.moviesService.getMovies(MOVIES_GROUPS.popular).subscribe((res: any) => {
       this.popularMovies = res.results;
     });
 
-    this.moviesService.getMovies(MovieGroup.TopRated).subscribe((res: any) => {
+    this.moviesService.getMovies(MOVIES_GROUPS.topRated).subscribe((res: any) => {
       this.topRatedMovies = res.results;
     });
 
-    this.moviesService.getMovies(MovieGroup.Upcoming).subscribe((res: any) => {
+    this.moviesService.getMovies(MOVIES_GROUPS.upcoming).subscribe((res: any) => {
       this.upcomingMovies = res.results;
     });
   }
