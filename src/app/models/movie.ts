@@ -4,9 +4,14 @@ export interface Movie {
   id: number;
   release_date: string;
   overview: string;
+  status: string;
   vote_average: number;
   vote_count: number;
   poster_path: string;
+  original_language: string;
+  revenue: number;
+  runtime: number;
+  genres: Genre[];
 }
 
 export interface MovieDto {
@@ -14,4 +19,9 @@ export interface MovieDto {
   results: Movie[];
   total_results: number;
   total_pages: number;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }
