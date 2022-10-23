@@ -6,6 +6,7 @@ export interface Movie {
   overview: string;
   vote_average: number;
   vote_count: number;
+  poster_path: string;
 }
 
 export interface MovieDto {

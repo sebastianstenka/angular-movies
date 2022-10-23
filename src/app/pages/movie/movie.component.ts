@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IMAGES_SIZES } from 'src/app/constants/images.sizes';
 import { Movie } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
 
@@ -19,5 +20,9 @@ export class MovieComponent implements OnInit {
 
   getMovie(id: string) {
     this.moviesService.getMovieById(id).subscribe((movie) => (this.movie = movie));
+  }
+
+  getImgPath() {
+    return `${IMAGES_SIZES.medium + this.movie?.poster_path}`;
   }
 }
