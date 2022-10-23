@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MOVIES_GROUPS } from 'src/app/constants/movies.groups';
+import { Movie } from 'src/app/models/movie';
+import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
   selector: 'app-movies',
@@ -6,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movies.component.scss']
 })
 export class MoviesComponent implements OnInit {
-  constructor() {}
+  movies: Movie[] = [];
 
-  ngOnInit(): void {}
+  constructor(private moviesService: MoviesService) {}
+
+  ngOnInit(): void {
+    this.moviesService.getMoviesByPage(MOVIES_GROUPS.popular, 1).subscribe((movies) => {
+      this.movies = movies;
+    });
+  }
 }
