@@ -35,3 +35,13 @@ export interface MovieVideo {
   site: string;
   key: string;
 }
+
+export interface MovieImageDto {
+  id: number;
+  backdrops: MovieImage[];
+  posters: MovieImage[];
+}
+
+export interface MovieImage {
+  file_path: string;
+}
