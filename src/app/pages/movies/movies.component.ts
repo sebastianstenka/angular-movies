@@ -13,6 +13,7 @@ import { MoviesService } from 'src/app/services/movies.service';
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   genreId: number | null = null;
+  searchValue: string | null = null;
 
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) {}
 
@@ -27,8 +28,8 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  getPagedMovies(pageNumber: number) {
-    this.moviesService.getMoviesByPage(MOVIES_GROUPS.popular, pageNumber).subscribe((movies) => {
+  getPagedMovies(pageNumber: number, searchKeyword?: string) {
+    this.moviesService.searchMovies(pageNumber, searchKeyword).subscribe((movies) => {
       this.movies = movies;
     });
   }
@@ -44,7 +45,11 @@ export class MoviesComponent implements OnInit {
     if (this.genreId) {
       this.getMoviesByGenre(this.genreId, pageNumber);
     } else {
-      this.getPagedMovies(pageNumber);
+      this.getPagedMovies(pageNumber, this.searchValue ? this.searchValue : undefined);
     }
+  }
+
+  searchChanged() {
+    this.getPagedMovies(1, this.searchValue ? this.searchValue : undefined);
   }
 }
