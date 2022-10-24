@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs';
 import { IMAGES_SIZES } from 'src/app/constants/images.sizes';
 import { Movie, MovieCredits, MovieImage, MovieVideo } from 'src/app/models/movie';
 import { MoviesService } from 'src/app/services/movies.service';
@@ -20,7 +21,9 @@ export class MovieComponent implements OnInit {
   constructor(private route: ActivatedRoute, private moviesService: MoviesService) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(({ id }) => {
+    // get only one time from subscribe and close the subscription
+    // it is necessary except httpClient
+    this.route.params.pipe(first()).subscribe(({ id }) => {
       this.getMovie(id);
       this.getMovieVideo(id);
       this.getMovieImages(id);
