@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Movie, MovieDto, MovieImageDto, MovieVideoDto } from '../models/movie';
+import { Movie, MovieCredits, MovieDto, MovieImageDto, MovieVideoDto } from '../models/movie';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -39,6 +39,10 @@ export class MoviesService {
         return of(res.results);
       })
     );
+  }
+
+  getMovieCredits(id: string) {
+    return this.http.get<MovieCredits>(`${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`);
   }
 
   getMoviesByPage(group: string, page: number) {

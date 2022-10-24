@@ -45,3 +45,11 @@ export interface MovieImageDto {
 export interface MovieImage {
   file_path: string;
 }
+
+//second way to get data
+export interface MovieCredits {
+  cast: {
+    name: string;
+    profile_path: string;
+  }[];
+}
