@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'video-embed',
@@ -14,9 +14,13 @@ export class VideoEmbedComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {}
+  videoUrl: SafeResourceUrl = '';
 
-  getSafeUrl() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubeUrl + this.key);
+  ngOnInit(): void {
+    this.videoUrl = this.getSafeUrl(this.youtubeUrl + this.key);
+  }
+
+  getSafeUrl(url: string): SafeResourceUrl {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }
