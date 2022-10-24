@@ -54,11 +54,21 @@ export class MoviesService {
     return this.http.get<MovieCredits>(`${this.baseUrl}/movie/${id}/credits?api_key=${this.apiKey}`);
   }
 
-  getMoviesByPage(group: string, page: number) {
-    return this.http.get<MovieDto>(`${this.baseUrl}/movie/${group}?page=${page}&api_key=${this.apiKey}`).pipe(
+  getMoviesByPage(group: string, pageNumber: number) {
+    return this.http.get<MovieDto>(`${this.baseUrl}/movie/${group}?page=${pageNumber}&api_key=${this.apiKey}`).pipe(
       switchMap((res) => {
         return of(res.results);
       })
     );
+  }
+
+  getMoviesByGenreId(id: number, pageNumber: number) {
+    return this.http
+      .get<MovieDto>(`${this.baseUrl}/discover/movie?with_genres=${id}&page=${pageNumber}&api_key=${this.apiKey}`)
+      .pipe(
+        switchMap((res) => {
+          return of(res.results);
+        })
+      );
   }
 }
